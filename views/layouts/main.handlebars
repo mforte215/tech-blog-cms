@@ -1,0 +1,53 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/index.css" />
+    <title>tech blog cms</title>
+  </head>
+  <body>
+    <header>
+        <nav class="nav-bar">
+            <a href="/">
+                <div class="nav-link logo">
+                    <h2>Tech Blog CMS</h2>
+                </div>
+            </a>
+            <div class="nav-link-container">
+                <a href="/">
+                    <div class="nav-link">
+                        <h2>Home</h2>
+                    </div>
+                </a>
+                <a href="/">
+                    <div class="nav-link">
+                        <h2>Dashboard</h2>
+                    </div>
+                </a>
+                {{#if logged_in}}
+                <a href="/logout">
+                    <div class=" nav-link">
+                        <h2>Logout</h2>
+                    </div>
+                </a>
+                {{else}}
+                <a href="/login">
+                    <div class=" nav-link">
+                        <h2>Login</h2>
+                    </div>
+                </a>
+                {{/if}}
+            </div>
+            <div class="hamburger-postioner">
+                <input type="checkbox" id="hamburger">
+                <label for="hamburger" class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </label>
+            </div>
+    </header>
+    {{{body}}}
+    <script src="/js/index.js"></script>
+  </body>
+</html>
