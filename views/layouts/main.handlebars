@@ -19,13 +19,14 @@
                         <h2>Home</h2>
                     </div>
                 </a>
-                <a href="/">
+                {{#if logged_in}}
+                <a href="/dashboard">
                     <div class="nav-link">
                         <h2>Dashboard</h2>
                     </div>
                 </a>
-                {{#if logged_in}}
-                <a href="/logout">
+
+                <a id="logout-btn">
                     <div class=" nav-link">
                         <h2>Logout</h2>
                     </div>

@@ -131,6 +131,52 @@ input#hamburger {
   color: black;
 }
 
+#logout-btn {
+  cursor: pointer;
+}
+
+.dashboard-header {
+  width: 60%;
+  margin: 5% 20% 0 20%;
+}
+
+.new-blog-btn {
+  padding: 10px;
+  margin: 5px;
+  border-color: gray;
+}
+
+#blog_content {
+  resize: none;
+  padding: 20px;
+}
+
+.main-header {
+  width: 60%;
+  margin: 5% 20% 0 20%;
+}
+
+.blog-tile-container {
+  border: 2px solid black;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.blog-tile-title {
+  font-size: 2em;
+  margin-bottom: 8px;
+}
+
+.blog-tile-subtitle {
+  font-size: 1.5em;
+  margin-bottom: 8px;
+}
+
+.blogfeed-container {
+  width: 60%;
+  margin: 5% 20% 0 20%;
+}
+
 @media only screen and (max-width: 968px) {
   .nav-link-container {
     display: none;

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {User, Blog} = require('../models/index');
-
+const checkLogin = require('../utils/auth');
 
 
 // GET for homepage, needs blog feed data from DB
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
         const blogs = foundBlogs.map((blog) => blog.get({plain: true}));
         const UserLoggedIn = req.session.logged_in
         console.log("LOGGING IF LOGGED IN:")
-        console.log(UserLoggedIn);
+        console.log(blogs);
         let loggedIn;
         if (UserLoggedIn) {
             loggedIn = true;
@@ -83,7 +83,69 @@ router.get('/sign-up', async (req, res) => {
         res.status(500).json(error);
     }
 
-})
+});
+
+router.get('/dashboard', checkLogin, async (req, res) => {
+
+    try {
+
+        if (!req.session.logged_in) {
+            res.redirect('/');
+        }
+        else {
+
+            //load personal dashboard with user data
+            const userData = await User.findByPk(req.session.user_id, {
+                attributes: {exclude: ['password']},
+                include: [{model: Blog}],
+            });
+            const user = userData.get({plain: true});
+
+            res.render('dashboard', {
+                ...user,
+                logged_in: true
+            });
+        }
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+
+
+});
+
+router.get('/blog/new', checkLogin, async (req, res) => {
+
+    try {
+        if (!req.session.logged_in) {
+            res.redirect('/login');
+        }
+        else {
+
+            const UserLoggedIn = req.session.logged_in
+            console.log("LOGGING IF LOGGED IN:")
+            console.log(UserLoggedIn);
+            let loggedIn;
+            if (UserLoggedIn) {
+                loggedIn = true;
+            }
+            else {
+                loggedIn = false;
+            }
+            res.render('new-blog', {
+                logged_in: loggedIn,
+            })
+        }
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+});
+
+
 
 
 module.exports = router;

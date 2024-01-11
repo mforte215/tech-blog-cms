@@ -1,9 +1,18 @@
-const menuElement = document.getElementById('hamburger');
 
-const init = () => {
-    menuElement.addEventListener('click', onMenuToggle);
-}
 
+
+const logoutListenerHandler = async () => {
+    const response = await fetch('/api/users/logout', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+    });
+
+    if (response.ok) {
+        document.location.replace('/login');
+    } else {
+        alert(response.statusText);
+    }
+};
 
 const onMenuToggle = () => {
     console.log('MENU CHECKBOX IS:');
@@ -67,7 +76,13 @@ const onMenuToggle = () => {
 }
 
 
+const menuElement = document.getElementById('hamburger').addEventListener('click', onMenuToggle);
+const logoutBtn = document.getElementById('logout-btn')
 
-
+const init = () => {
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logoutListenerHandler)
+    }
+}
 
 init();
