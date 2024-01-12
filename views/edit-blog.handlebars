@@ -1,0 +1,26 @@
+<main>
+  <div class="login-container">
+    <form id="new-blog-form">
+      <div class="form-control">
+        <label>Edit Blog</label>
+      </div>
+      <div class="form-control">
+        <label>Title:</label><br />
+        <input type="text" id="blog_title" value="{{title}}" />
+      </div>
+      <div class="form-control">
+        <label>Content:</label><br />
+        <textarea id="blog_content" rows="10" cols="70">{{content}}</textarea>
+      </div>
+      <div class="form-control">
+        <input
+          id="publish-btn"
+          type="submit"
+          value="Publish"
+          onclick="editBlogHandler({{id}})"
+        />
+      </div>
+    </form>
+  </div>
+</main>
+<script src="/js/editBlog.js"></script>

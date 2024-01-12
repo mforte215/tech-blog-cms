@@ -100,6 +100,7 @@ input#hamburger {
 .mobile-links {
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }
 
 .mobile-link-text {
@@ -175,6 +176,10 @@ input#hamburger {
 .blogfeed-container {
   width: 60%;
   margin: 5% 20% 0 20%;
+}
+
+.blog-content {
+  margin-top: 5%;
 }
 
 @media only screen and (max-width: 968px) {

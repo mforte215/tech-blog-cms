@@ -1,4 +1,4 @@
-
+const menuElement = document.getElementById('hamburger')
 
 
 const logoutListenerHandler = async () => {
@@ -15,6 +15,7 @@ const logoutListenerHandler = async () => {
 };
 
 const onMenuToggle = () => {
+    const menuElement = document.getElementById('hamburger')
     console.log('MENU CHECKBOX IS:');
     console.log(menuElement.checked);
     if (menuElement.checked) {
@@ -25,7 +26,7 @@ const onMenuToggle = () => {
 
         //insert nav-links
         const latestArticleLink = document.createElement('a');
-        latestArticleLink.href = "#latest"
+        latestArticleLink.href = "/"
         latestArticleLink.classList.add('mobile-links');
         const latestContainer = document.createElement('div');
         latestContainer.classList.add('mobile-link-container');
@@ -38,7 +39,7 @@ const onMenuToggle = () => {
 
 
         const articleArchivesLink = document.createElement('a');
-        articleArchivesLink.href = "#archive"
+        articleArchivesLink.href = "/dashboard"
         articleArchivesLink.classList.add('mobile-links');
         const archieveContainer = document.createElement('div');
         archieveContainer.classList.add('mobile-link-container');
@@ -49,18 +50,33 @@ const onMenuToggle = () => {
         articleArchivesLink.append(archieveContainer);
         navContainer.append(articleArchivesLink);
 
+        if (document.getElementById('login-title')) {
+            const searchArticlesLink = document.createElement('a');
+            searchArticlesLink.href = "/login";
+            searchArticlesLink.classList.add('mobile-links');
+            const searchContainer = document.createElement('div');
+            searchContainer.classList.add('mobile-link-container');
+            const navSearchLinkText = document.createElement('h2');
+            navSearchLinkText.classList.add('mobile-link-text');
+            navSearchLinkText.innerText = "Login";
+            searchContainer.append(navSearchLinkText);
+            searchArticlesLink.append(searchContainer);
+            navContainer.append(searchArticlesLink);
+        }
+        else {
 
-        const searchArticlesLink = document.createElement('a');
-        searchArticlesLink.href = "#search";
-        searchArticlesLink.classList.add('mobile-links');
-        const searchContainer = document.createElement('div');
-        searchContainer.classList.add('mobile-link-container');
-        const navSearchLinkText = document.createElement('h2');
-        navSearchLinkText.classList.add('mobile-link-text');
-        navSearchLinkText.innerText = "Login";
-        searchContainer.append(navSearchLinkText);
-        searchArticlesLink.append(searchContainer);
-        navContainer.append(searchArticlesLink);
+            const searchArticlesLink = document.createElement('a');
+            searchArticlesLink.classList.add('mobile-links');
+            searchArticlesLink.addEventListener('click', logoutListenerHandler)
+            const searchContainer = document.createElement('div');
+            searchContainer.classList.add('mobile-link-container');
+            const navSearchLinkText = document.createElement('h2');
+            navSearchLinkText.classList.add('mobile-link-text');
+            navSearchLinkText.innerText = "Logout";
+            searchContainer.append(navSearchLinkText);
+            searchArticlesLink.append(searchContainer);
+            navContainer.append(searchArticlesLink);
+        }
 
         //find the navbar and append below
         const navBar = document.querySelector('.nav-bar');
@@ -76,7 +92,7 @@ const onMenuToggle = () => {
 }
 
 
-const menuElement = document.getElementById('hamburger').addEventListener('click', onMenuToggle);
+document.getElementById('hamburger').addEventListener('click', onMenuToggle);
 const logoutBtn = document.getElementById('logout-btn')
 
 const init = () => {

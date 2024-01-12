@@ -23,9 +23,12 @@ router.post('/', checkLogin, async (req, res) => {
     }
 });
 
-router.delete('/:id', checkLogin, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
-        //destroy the given blog
+        //destroy the given blog if you own it
+        console.log("********************************");
+        console.log("DELETING THE BLOG");
+        console.log("********************************");
         const foundBlog = await Blog.destroy({
             where: {
                 id: req.params.id,
@@ -43,5 +46,36 @@ router.delete('/:id', checkLogin, async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+router.put('/:id', async (req, res) => {
+    try {
+        const updatedBlog = await Blog.update({
+            title: req.body.title,
+            content: req.body.content
+        }, {
+            where: {
+                id: req.params.id,
+            }
+        });
+        console.log("WhAT IS UPDATED BLOG");
+        console.log(updatedBlog);
+        if (!updatedBlog) {
+            console.log("DID NOT WORK")
+            res.status(500).json('SORRY SOMETHING WENT WRONG!');
+        }
+        else {
+            console.log("WORKED")
+            res.status(200).json(updatedBlog);
+        }
+
+
+
+    } catch (error) {
+
+    }
+
+
+
+})
 
 module.exports = router;
